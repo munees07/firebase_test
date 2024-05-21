@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class AddPage extends StatefulWidget {
-  AddPage({super.key, this.docId, this.note});
+  AddPage({super.key, this.docId, this.note,this.age});
 
   String? docId;
   String? note;
+  String? age;
 
   @override
   State<AddPage> createState() => _AddPageState();
@@ -14,9 +15,11 @@ class AddPage extends StatefulWidget {
 
 class _AddPageState extends State<AddPage> {
   TextEditingController noteController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   @override
   void initState() {
     widget.docId != null ? noteController.text = widget.note! : null;
+    widget.docId != null ? ageController.text = widget.age! : null;
     super.initState();
   }
 
@@ -34,12 +37,16 @@ class _AddPageState extends State<AddPage> {
             const SizedBox(
               height: 20,
             ),
+            TextFormField(controller: ageController),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
                 onPressed: () {
                   widget.docId == null
-                      ? FirestroeServices().addNotes(noteController.text)
+                      ? FirestroeServices().addNotes(noteController.text,ageController.text)
                       : FirestroeServices()
-                          .updateNote(widget.docId!, noteController.text);
+                          .updateNote(widget.docId!, noteController.text,ageController.text);
                   noteController.clear();
                   Navigator.pop(context);
                 },

@@ -28,12 +28,14 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   DocumentSnapshot document = notesList[index];
                   String docId = document.id;
-
                   Map<String, dynamic> data =
                       document.data() as Map<String, dynamic>;
-                  String noteText = data['note'];
+                  
                   return ListTile(
-                    title: Text(noteText),
+                    title: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [Text(data['note']), Text(data['age'])],
+                    ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -44,7 +46,9 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AddPage(
-                                    docId: docId,note: noteText,
+                                    age: data['age'],
+                                    docId: docId,
+                                    note: data['note'],
                                   ),
                                 ));
                           },

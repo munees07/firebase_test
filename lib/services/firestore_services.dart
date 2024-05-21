@@ -4,8 +4,8 @@ class FirestroeServices {
   final CollectionReference notes =
       FirebaseFirestore.instance.collection('notes');
 
-  Future<void> addNotes(String note) {
-    return notes.add({"note": note});
+  Future<void> addNotes(String note,String age) {
+    return notes.add({"note": note,"age": age});
   }
 
   Stream<QuerySnapshot> getNotes() {
@@ -16,7 +16,7 @@ class FirestroeServices {
     return notes.doc(id).delete();
   }
 
-  Future<void> updateNote(String id, String newnote) {
-    return notes.doc(id).update({'note': newnote});
+  Future<void> updateNote(String id, String newnote,String newAge) {
+    return notes.doc(id).update({'note': newnote,'age':newAge});
   }
 }
