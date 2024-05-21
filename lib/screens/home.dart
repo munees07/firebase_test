@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
                   ));
             }),
         body: StreamBuilder(
-          stream: FirestroeServices().getNotes(),
+          stream: FireStoreServices().getNotes(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List notesList = snapshot.data!.docs;
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            FirestroeServices().deleteNote(docId);
+                            FireStoreServices().deleteNote(docId);
                           },
                         ),
                       ],

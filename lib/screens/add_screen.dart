@@ -44,8 +44,8 @@ class _AddPageState extends State<AddPage> {
             ElevatedButton(
                 onPressed: () {
                   widget.docId == null
-                      ? FirestroeServices().addNotes(noteController.text,ageController.text)
-                      : FirestroeServices()
+                      ? FireStoreServices().addNotes(noteController.text,ageController.text)
+                      : FireStoreServices()
                           .updateNote(widget.docId!, noteController.text,ageController.text);
                   noteController.clear();
                   Navigator.pop(context);
